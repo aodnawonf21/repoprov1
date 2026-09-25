@@ -1,0 +1,11 @@
+{
+  "name": "repostera-pro-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix repostera-pro-vercel/repostera-pro run dev",
+    "build": "npm --prefix repostera-pro-vercel/repostera-pro run build",
+    "start": "npm --prefix repostera-pro-vercel/repostera-pro run start",
+    "lint": "npm --prefix repostera-pro-vercel/repostera-pro run lint"
+  }
+}
