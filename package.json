@@ -6,7 +6,7 @@
     "dev": "cd repostera-pro-vercel/repostera-pro && next dev",
     "build": "cd repostera-pro-vercel/repostera-pro && next build",
     "start": "cd repostera-pro-vercel/repostera-pro && next start",
-    "lint": "cd repostera-pro-vercel/repostera-pro && next lint"
+    "lint": "cd repostera-pro-vercel/repostera-pro && eslint ."
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.13",
