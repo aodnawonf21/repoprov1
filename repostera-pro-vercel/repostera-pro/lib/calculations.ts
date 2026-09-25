@@ -1,0 +1,13 @@
+import type {Ingredient,Order,Product} from "@/types";
+export const calculateIngredientCost=(p:Product,ingredients:Ingredient[])=>p.ingredients.reduce((s,x)=>{const i=ingredients.find(v=>v.id===x.ingredientId);if(!i)return s;const unit=i.baseUnit==="kg"||i.baseUnit==="l"?i.purchasePrice/(i.purchaseQuantity*1000):i.purchasePrice/i.purchaseQuantity;return s+unit*x.quantity},0);
+export const calculatePackagingCost=(p:Product)=>p.packaging.reduce((s,x)=>s+x.cost,0);
+export const calculateLaborCost=(p:Product)=>p.laborHours*p.laborRate;
+export const calculateRealCost=(p:Product,ingredients:Ingredient[])=>calculateIngredientCost(p,ingredients)+calculatePackagingCost(p)+calculateLaborCost(p);
+export const calculateProfit=(price:number,cost:number)=>price-cost;
+export const calculateMargin=(price:number,cost:number)=>price?((price-cost)/price)*100:0;
+export const calculateSuggestedPrice=(cost:number,margin:number)=>margin>=100?cost:cost/(1-margin/100);
+export const calculateRoundedPrice=(value:number,rounding:number)=>rounding?Math.ceil(value/rounding)*rounding:value;
+export const calculateOrderTotal=(o:Order)=>o.items.reduce((s,i)=>s+i.subtotal,0);
+export const calculateOrderBalance=(o:Order)=>Math.max(0,o.total-o.payments.reduce((s,p)=>s+p.amount,0));
+export const calculateAverageTicket=(orders:Order[])=>orders.length?orders.reduce((s,o)=>s+o.total,0)/orders.length:0;
+export const calculateBusinessResult=(orders:Order[],expenses:number[],products:Product[],ingredients:Ingredient[])=>{const sales=orders.filter(o=>o.status!=="Cancelado").reduce((s,o)=>s+o.total,0);const costs=orders.filter(o=>o.status!=="Cancelado").reduce((s,o)=>s+o.items.reduce((a,it)=>{const p=products.find(x=>x.id===it.productId);return a+(p?calculateRealCost(p,ingredients)*it.quantity:0)},0),0);return {sales,costs,expenses:expenses.reduce((a,b)=>a+b,0),result:sales-costs-expenses.reduce((a,b)=>a+b,0)}};
