@@ -1,4 +1,7 @@
 "use client";
+
+export const dynamic = "force-dynamic";
+
 import {useEffect,useMemo,useState} from "react";
 import {Bell,Search,UserRound} from "lucide-react";
 import {createDemoData} from "@/data/demo";
