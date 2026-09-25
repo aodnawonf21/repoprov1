@@ -1,11 +1,25 @@
 {
-  "name": "repostera-pro-workspace",
+  "name": "repostera-pro",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix repostera-pro-vercel/repostera-pro run dev",
-    "build": "npm --prefix repostera-pro-vercel/repostera-pro run build",
-    "start": "npm --prefix repostera-pro-vercel/repostera-pro run start",
-    "lint": "npm --prefix repostera-pro-vercel/repostera-pro run lint"
+    "dev": "cd repostera-pro-vercel/repostera-pro && next dev",
+    "build": "cd repostera-pro-vercel/repostera-pro && next build",
+    "start": "cd repostera-pro-vercel/repostera-pro && next start",
+    "lint": "cd repostera-pro-vercel/repostera-pro && next lint"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "lucide-react": "^0.468.0",
+    "next": "15.5.9",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.7.0"
   }
 }
